@@ -1,28 +1,19 @@
 <template>
-    <ul class="menu">
+    <ul>
         <li>
             <a @click="() => this.$router.push({path:'/'})">Dashboard</a>
         </li>
         <li>
             <a @click="() => this.$router.push({path:'/pessoa'})">Pessoas</a>
         </li>
+        <li>
+            <a @click="() => this.$router.push({path:'/grupo'})">Grupos</a>
+        </li>
+        <li>
+            <a @click="() => this.$router.push({path:'/Setor'})">Setor</a>
+        </li>
     
     
     </ul>
 </template>
-
-<script>
-export default {
-    name: "Menu",
-    data() {
-        return {
-
-        }
-    },
-
-    methods: {
-
-    }
-}
-</script>
 
