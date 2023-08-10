@@ -21,8 +21,8 @@ export default{
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 :root {
-    --first-color: #6c5b7b;
-    --second-color: #c06c84;
+    --first-color: #0F213D;
+    --second-color: #8A7D63;
 }
 body {
     margin: 0;
@@ -37,7 +37,7 @@ body {
 
 .titulo {
     font-weight: 600;
-    color: dimgray;
+    color: rgb(95, 31, 31);
     font-size: 25px;
     margin-top: 10px;
 }

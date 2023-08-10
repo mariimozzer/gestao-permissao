@@ -16,7 +16,7 @@ function obterPorId(id){
     });
 }
 
-function cadastrar(pessoa){
+function cadastrar(grupo){
     return new Promise((resolve, reject) => {
         return api.post(`/grupo`, grupo)
         .then(response => resolve(response))
