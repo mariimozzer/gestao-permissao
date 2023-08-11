@@ -16,9 +16,9 @@ const routes = [
   },
   {
     path: '/pessoa',
-    name: 'Pessoa',
+    name: 'ControleDePessoas',
     component: ControleDePessoas,
-    title: 'Pessoas'   
+    title: 'Pessoa'   
   },
   {
     path: '/controle-de-pessoas/novo',
@@ -80,7 +80,7 @@ const routes = [
     path: '/controle-de-grupo/editar',
     name: 'EditarGrupo',
     component: GrupoView,
-    title: 'Adicionar Grupo'
+    title: 'Editar Grupo'
     
   },
   {
@@ -94,25 +94,25 @@ const routes = [
     path: '/funcionalidade',
     name: 'ControleDeFuncionalidade',
     component: ControleDeFuncionalidade,
-    title: 'Funcionalidades'  
+    title: 'Funcionalidade'  
   },
   {
     path: '/funcionalidade/novo',
     name: 'AdicionarFuncionalidade',
     component: FuncionalidadeView,
-    title: 'Adicionar Funcionalidades'  
+    title: 'Adicionar Funcionalidade'  
   },
   {
     path: '/funcionalidade/editar',
     name: 'EditarFuncionalidade',
     component: FuncionalidadeView,
-    title: 'Editar Funcionalidades'  
+    title: 'Editar Funcionalidade'  
   },
   {
     path: '/funcionalidade/excluir',
     name: 'ExcluirFuncionalidade',
     component: FuncionalidadeView,
-    title: 'Excluir Funcionalidades'  
+    title: 'Excluir Funcionalidade'  
   },
 ];
 

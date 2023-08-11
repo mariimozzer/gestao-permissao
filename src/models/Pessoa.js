@@ -1,3 +1,6 @@
+import mascaraDeData from '../utils/conversor-data'
+
+
 export default class Pessoa {
     
     constructor(obj){
@@ -5,7 +8,7 @@ export default class Pessoa {
         this.id = obj.id;
         this.nomeCompleto = obj.nomeCompleto;
         this.sexo = obj.sexo;
-        this.dtNasc = obj.dtNasc;
+        this.dtNasc = obj.dtNasc && mascaraDeData.aplicarMascaraFormatoAmericanoEmDataISO(obj.dtNasc);
         this.CPF = obj.CPF;
         this.email = obj.email;
         this.celular = obj.celular;

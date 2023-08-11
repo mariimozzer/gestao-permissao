@@ -35,7 +35,7 @@
                             <td>{{ item.menu }}</td>
                             <td>{{ item.sistema_id }}</td>
                             <td class="icon-tabela">
-                                <i @click="editarFuncionalidade(item)" class="fa fa-edit icones-tabela"></i>
+                                <i @click="editarFuncionalidade(item)" class="fa fa-edit icones-tabela"></i> |
                                 <i @click="excluirFuncionalidade(item)" class="fa fa-trash icones-tabela"></i>
                             </td>
                         </tr>

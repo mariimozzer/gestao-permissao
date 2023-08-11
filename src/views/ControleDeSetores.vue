@@ -28,7 +28,7 @@
                             <td>{{ item.id }}</td>
                             <td>{{ item.nome }}</td>                           
                             <td class="icon-tabela">
-                                <i @click="editarSetor(item)" class="fa fa-edit icones-tabela"></i>
+                                <i @click="editarSetor(item)" class="fa fa-edit icones-tabela"></i> |
                                 <i @click="excluirSetor(item)" class="fa fa-trash icones-tabela"></i>
                             </td>
                         </tr>

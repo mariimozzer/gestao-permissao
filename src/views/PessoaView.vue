@@ -48,7 +48,7 @@
             <div class="col-sm-5">
                 <div class="form-group">
                     <label for="celular">Celular</label>
-                    <input id="celular" type="tel" v-model="pessoa.celular" class="form-control">
+                    <input id="celular" type="text" v-model="pessoa.celular" class="form-control">
                 </div>
             </div>
             <div class="col-sm-2">
@@ -69,7 +69,7 @@
             <div class="col-sm-12">
                 <hr>
                 <h1>
-                    {{ pessoa }}
+                    <!-- {{ pessoa }} -->
                 </h1>
                 <br>
     
@@ -78,9 +78,9 @@
                 <!-- <h1>check {{ continuarAdicionando }}</h1> -->
                 <div v-show="modoCadastro" class="form-check-inline">
                     <label class="form-check-label">
-                                              <input type="checkbox" class="form-check-input" v-model="continuarAdicionando">
-                                              Continuar adicionando
-                                          </label>
+                                                  <input type="checkbox" class="form-check-input" v-model="continuarAdicionando">
+                                                  Continuar adicionando
+                                              </label>
                 </div>
                 <button @click="cancelar" class="btn btn-default float-right">Cancelar</button>
                 <button @click="salvarPessoa" class="btn btn-primary float-right mr-2">Salvar</button>
@@ -133,9 +133,9 @@ export default {
                     alert("Pessoa cadastrado com sucesso!");
                     this.pessoa = new Pessoa();
 
-                    if (!this.continuarAdicionando) {
-                        this.$router.push({ name: "ControleDePessoas" })
-                    }
+
+                    this.$router.push({ name: "ControleDePessoas" })
+
                 })
                 .catch(error => {
                     console.log(error);
@@ -148,12 +148,13 @@ export default {
         },
         atualizarPessoa() {
 
-
+            this.pessoa.dtNasc =
+                conversorDeData.aplicarMascaraISOEmFormatoAmericano(this.pessoa.dtNasc);
 
             pessoaService.atualizar(this.pessoa)
                 .then(() => {
                     alert("Pessoa atualizada com sucesso!");
-                    this.$router.push({ name: "PessoaView" });
+                    this.$router.push({ name: "ControleDePessoas" });
 
                 })
                 .catch(error => {
@@ -163,7 +164,7 @@ export default {
 
         cancelar() {
             this.pessoa = new Pessoa();
-            this.$router.push({ name: "PessoaView" })
+            this.$router.push({ name: "ControleDePessoas" })
         }
     }
 }

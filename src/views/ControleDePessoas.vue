@@ -39,7 +39,7 @@
                             <td>{{ item.celular }}</td>
                             <td>{{ item.id_setor }}</td>
                             <td class="icon-tabela">
-                                <i @click="editarPessoa(item)" class="fa fa-edit icones-tabela"></i>
+                                <i @click="editarPessoa(item)" class="fa fa-edit icones-tabela"></i> |
                                 <i @click="excluirPessoa(item)" class="fa fa-trash icones-tabela"></i>
                             </td>
                         </tr>
@@ -78,7 +78,7 @@ export default {
 
     methods: {
 
-        getAllPessoas() {
+        getAll() {
             pessoaService.obterTodos()
                 .then((response) => {
                     this.pessoas = response.data.data.map((p) => new Pessoa(p));
@@ -121,7 +121,7 @@ export default {
     },
 
     mounted() {
-        this.getAllPessoas()
+        this.getAll()
     }
 
 };
