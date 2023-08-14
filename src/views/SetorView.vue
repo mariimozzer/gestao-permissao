@@ -17,14 +17,13 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="nome">Setor</label>
-                    <input id="nome" type="text" v-model="setor.nome"  class="form-control">
+                    <input id="nome" type="text" v-model="setor.nome" class="form-control">
                 </div>
                 <button @click="cancelar" class="btn btn-default float-right">Cancelar</button>
                 <button @click="salvarSetor" class="btn btn-primary float-right mr-2">Salvar</button>
             </div>
         </div>
     </div>
-    
 </template>
 
 <script>
@@ -50,7 +49,7 @@ export default {
 
         this.modoCadastro = false;
         this.obterSetorporId(id);
-        
+
     },
     methods: {
         obterSetorporId(id) {
@@ -63,7 +62,7 @@ export default {
                 })
         },
         cadastrarSetor() {
-        
+
             setorService.cadastrar(this.setor)
                 .then(() => {
                     alert("Setor cadastrado com sucesso!");
@@ -83,7 +82,7 @@ export default {
             (this.modoCadastro) ? this.cadastrarSetor(): this.atualizarSetor();
         },
         atualizarSetor() {
-         
+
             setorService.atualizar(this.setor)
                 .then(() => {
                     alert("Setor atualizada com sucesso!");

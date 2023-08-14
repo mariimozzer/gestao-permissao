@@ -1,6 +1,7 @@
 import PessoaView from "@/views/PessoaView"
 import FuncionalidadeView from "@/views/FuncionalidadeView"
 import GrupoView from "@/views/GrupoView"
+import VinculoDeGrupo from "@/views/VinculoDeGrupo"
 import SetorView from "@/views/SetorView"
 import HomeView from "@/views/HomeView"
 import ControleDePessoas from "@/views/ControleDePessoas"
@@ -90,6 +91,16 @@ const routes = [
     title: 'Excluir Grupo'
     
   },
+
+  {
+    path: '/vinculo-de-grupo',
+    name: 'VincularGrupo',
+    component: VinculoDeGrupo,
+    title: 'Vincular Grupo'
+    
+  },
+
+
   {
     path: '/funcionalidade',
     name: 'ControleDeFuncionalidade',

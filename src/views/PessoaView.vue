@@ -78,9 +78,9 @@
                 <!-- <h1>check {{ continuarAdicionando }}</h1> -->
                 <div v-show="modoCadastro" class="form-check-inline">
                     <label class="form-check-label">
-                                                  <input type="checkbox" class="form-check-input" v-model="continuarAdicionando">
-                                                  Continuar adicionando
-                                              </label>
+                                                      <input type="checkbox" class="form-check-input" v-model="continuarAdicionando">
+                                                      Continuar adicionando
+                                                  </label>
                 </div>
                 <button @click="cancelar" class="btn btn-default float-right">Cancelar</button>
                 <button @click="salvarPessoa" class="btn btn-primary float-right mr-2">Salvar</button>

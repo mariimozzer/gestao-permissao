@@ -1,15 +1,11 @@
 <template>
     <div id="app">
     
-            <HeaderComponent> </HeaderComponent>
-            <br>
-            <br>
-    <router-view/> 
-        
-      
-        <MenuComponent></MenuComponent>   
+        <!-- <HeaderComponent> </HeaderComponent>      -->
+        <router-view/>
+         <MenuComponent></MenuComponent>
         <FooterComponent></FooterComponent>
-     
+    
     </div>
 </template>
 
@@ -17,13 +13,16 @@
 <script>
 import MenuComponent from "@/components/menu/MenuComponent.vue"
 import FooterComponent from "@/components/footer/footerComponent"
-import HeaderComponent from "@/components/header/HeaderComponent.vue"
+// import HeaderComponent from "@/components/header/HeaderComponent.vue"
+
+
 
 export default {
     components: {
         MenuComponent: MenuComponent,
         FooterComponent: FooterComponent,
-        HeaderComponent: HeaderComponent
+        // HeaderComponent: HeaderComponent,
+      
     }
 }
 </script>
@@ -31,27 +30,13 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-:root {
+/* :root {
     --first-color: #0F213D;
     --second-color: #8A7D63;
-}
-
-
-
-
-body {
-    /* margin: 0;
-    padding: 0;
-    border: 0; */
-    font-family: 'Quicksand', sans-serif;
-    width: 100%;
-    display: flex;
-   
-}
-
-/* .container {
-    margin-top: 15px;
 } */
+
+
+
 
 .titulo {
     font-weight: 600;
@@ -60,13 +45,8 @@ body {
     margin-top: 10px;
 }
 
-hr {
-    margin: 0px;
-}
 
-/* .sub-container {
-    margin-top: 15px;
-} */
+
 
 .btn-primary,
 .btn-primary:active,

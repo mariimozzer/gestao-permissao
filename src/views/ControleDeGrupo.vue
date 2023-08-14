@@ -8,7 +8,10 @@
         </div>
         <div class="row sub-container">
             <div class="col-sm-2">
-                <Button :callback="adicionarGrupo" value=" Adicionar "></Button>
+                <Button :callback="adicionarGrupo" value=" Adicionar Grupo"></Button>
+            </div>
+            <div>
+                <Button :callback="vincularGrupo" value=" Vincular Grupo"></Button>
             </div>
         </div>
     
@@ -18,7 +21,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nome </th>                      
+                            <th>Nome </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,7 +29,7 @@
                         <tr v-for="item in grupos" :key="item.id">
     
                             <td>{{ item.id }}</td>
-                            <td>{{ item.nome }}</td>                           
+                            <td>{{ item.nome }}</td>
                             <td class="icon-tabela">
                                 <i @click="editarGrupo(item)" class="fa fa-edit icones-tabela"></i> |
                                 <i @click="excluirGrupo(item)" class="fa fa-trash icones-tabela"></i>
@@ -77,6 +80,9 @@ export default {
                 .catch(error => {
                     console.log(error)
                 })
+        },
+        vincularGrupo(){
+            this.$router.push({ name: "VincularGrupo" })
         },
 
         adicionarGrupo() {
