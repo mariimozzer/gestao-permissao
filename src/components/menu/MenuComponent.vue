@@ -4,12 +4,12 @@
         <ul class="menu__lista">
             <!-- <li><img src="logo-roboflex-preta.png" alt=""></li> -->
             <li class="menu__itens">
-              
-                <router-link to="/dashboard">Dashboard</router-link>
+    
+                <router-link to="/dashboard">Inicio</router-link>
             </li>
             <li class="menu__itens">
                 <router-link to="/pessoa">Pessoas</router-link>
-               
+    
             </li>
             <li class="menu__itens">
                 <router-link to="/setores">Setores</router-link>
@@ -29,9 +29,6 @@
 </template>
 
 <style scoped>
-
-
-
 
 </style>
 

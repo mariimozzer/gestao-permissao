@@ -1,7 +1,7 @@
 <template>
     <div id="app">
     
-        <!-- <HeaderComponent> </HeaderComponent>      -->
+        <HeaderComponent> </HeaderComponent>     
         <router-view/>
          <MenuComponent></MenuComponent>
         <FooterComponent></FooterComponent>
@@ -13,7 +13,7 @@
 <script>
 import MenuComponent from "@/components/menu/MenuComponent.vue"
 import FooterComponent from "@/components/footer/footerComponent"
-// import HeaderComponent from "@/components/header/HeaderComponent.vue"
+import HeaderComponent from "@/components/header/HeaderComponent.vue"
 
 
 
@@ -21,7 +21,7 @@ export default {
     components: {
         MenuComponent: MenuComponent,
         FooterComponent: FooterComponent,
-        // HeaderComponent: HeaderComponent,
+        HeaderComponent: HeaderComponent,
       
     }
 }
@@ -42,7 +42,7 @@ export default {
     font-weight: 600;
     color: #A6835E;
     font-size: 25px;
-    margin-top: 10px;
+    margin-top: 250px;
 }
 
 

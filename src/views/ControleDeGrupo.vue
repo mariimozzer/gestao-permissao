@@ -75,13 +75,13 @@ export default {
             grupoService.obterTodos()
                 .then((response) => {
                     this.grupos = response.data.data.map((p) => new Grupo(p));
-                    //console.log(this.setores)
+                    // this.grupos = payload.map((p) => new Grupo(p));
                 })
                 .catch(error => {
                     console.log(error)
                 })
         },
-        vincularGrupo(){
+        vincularGrupo() {
             this.$router.push({ name: "VincularGrupo" })
         },
 

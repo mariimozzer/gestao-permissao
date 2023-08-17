@@ -1,5 +1,5 @@
 <template>
-    <MDBFooterComponent :text="['center', 'lg-start']">
+    <MDBFooterComponent :text="['center', 'lg-start']" class="footer">
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
     © 2023 Copyright:

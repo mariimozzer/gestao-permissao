@@ -6,26 +6,20 @@
                 <h2 class="titulo"> Vincular Grupos </h2>
                 <hr>
     
-    
             </div>
-            <label>Selecione um grupo: </label>
-            <select class="combo" v-model="grupoSelecionado">
+            <div>
+                <label>Selecione um grupo: </label>
+                <select class="combo" v-model="grupoSelecionado">
                 <option value="" disabled>Selecione o grupo</option>
-            <option v-for="item in gruposDisponiveis" :key="item.id" :value="item.nome">{{ item.nome }}</option>
-           
-           </select>
+                <option v-for="item in gruposDisponiveis" :key="item.id" :value="item.id">{{ item.nome }}</option>
+                </select>
+                <label>Usuários no grupo:</label>
+                <ul>
+                    <li v-for="user in filteredUsers" :key="user.id">{{ user.name }} ({{ user.email }}) </li>
     
-           <input type="text" v-model="searchTerm" placeholder="Search" @input="filterPessoas">
-           <ul>
-            <li v-for="pessoa in filteredPessoas" :key="pessoa.id">{{ pessoa.nome }}</li>
-
-           </ul>
-    
-            <!-- {{ gruposDisponiveis }}
-           {{ getAllGrupos }} -->
+                </ul>
+            </div>
         </div>
-    
-    
     </div>
 </template>
 
@@ -35,89 +29,98 @@ import grupoService from '@/services/grupo-service'
 import pessoaService from '@/services/pessoa-service'
 import Grupo from '@/models/Grupo'
 import Pessoa from '@/models/Pessoa'
-
+import Usuario from '@/models/Usuario'
+import usuarioService from "@/services/usuario-service"
 
 export default {
     name: "VinculoDeGrupo",
-    components: {
-
-    },
+    components: {},
 
     data() {
         return {
             gruposDisponiveis: [],
-            grupoSelecionado: null,
+            grupoSelecionado: '',
             pessoas: [],
-            searchTerm: ''
-
-
+            usuarios: [],
+            grupos: []
         }
     },
 
+
+
     methods: {
+
+        getAllUsuarios() {
+            usuarioService.obterTodos()
+                .then(response => {
+                    this.usuarios = response.data.map((p) => new Usuario(p));
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
         getAllGrupos() {
             grupoService.obterTodos()
                 .then((response) => {
                     this.gruposDisponiveis = response.data.data.map((p) => new Grupo(p));
-                    // this.gruposDisponiveis.forEach(item => {
-                    //     // console.log(item.nome);
-                    // });
-                    })
-
-                  
+                })
                 .catch(error => {
                     console.log(error)
                 })
         },
 
-        getAllPessoas(){
+        getAllPessoas() {
             pessoaService.obterTodos()
-            .then((response) => {
+                .then((response) => {
                     this.pessoas = response.data.data.map((p) => new Pessoa(p));
-                    this.pessoas.forEach(itemPessoas => {
-                        console.log(itemPessoas.nome);
-                    });
-                    })
-
-                  
+                })
                 .catch(error => {
                     console.log(error)
                 })
+        },
 
+        obterGrupoPorId(id) {
+            grupoService.obterPorId(id)
+                .then(response => {
+                    this.grupos = new Grupo(response.data);
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         },
 
 
-        filterPessoas() {
-            this.filteredPessoas = this.pessoas.filter(pessoa => {
-                return pessoa.nome.toLowerCase().includes(this.searchTerm.toLowerCase());
-            });
-        },
+
     },
-    
 
-    computed:{
-        filteredPessoas(){
-            if (this.searchTerm === '') {
-                return this.pessoas;
-            } else {
-                return this.pessoas.filter(pessoa => {
-                    return pessoa.nome.toLowerCase().includes(this.searchTerm.toLowerCase());
-                });
+    computed: {
+        filteredUsers() {
+            if (!this.grupoSelecionado || !this.usuarios.length) {
+                console.log("nada aqui")
+                console.log(this.grupoSelecionado)
+                console.log(this.usuarios)
+                return [];
             }
+            // console.log(this.usuarios.filter(user => user.grupo_id === this.grupoSelecionado))
+            return this.usuarios.filter(user => user.grupo_id === this.grupoSelecionado);
+
         }
+
+
     },
 
     mounted() {
+
         this.getAllGrupos();
         this.getAllPessoas();
+        this.getAllUsuarios();
+        // this.getUsuarios(4)
+
+
+
     }
-
-
 
 }
 </script>
-
-<style scoped>
-
-</style>
 
