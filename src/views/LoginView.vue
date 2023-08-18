@@ -46,6 +46,7 @@ export default {
     border: 1px solid #ddd;
     margin-top: 150px;
     padding: 30px;
+    
 }
 
 .logo {

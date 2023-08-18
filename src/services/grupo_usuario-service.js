@@ -8,26 +8,44 @@ function obterPorId(id){
     });
 }
 
-function cadastrar(usuario,grupo){
+function cadastrar(usuarioId, grupoId) {
+    const payload = {
+      idUser: usuarioId,
+      idGrupo: grupoId
+    };
+  
     return new Promise((resolve, reject) => {
-        return api.post(`/usuario/grupo`,usuario, grupo)
+      return api.post(`/usuario/grupo`, payload)
         .then(response => resolve(response))
         .catch(error => reject(error));
     });
-}
+  }
 
-// function deletar(id){
+
+
+
+
+
+// function cadastrar(){
 //     return new Promise((resolve, reject) => {
-//         return api.delete(`/usuario/grupo/`)
+//         return api.post(`/usuario/grupo`)
 //         .then(response => resolve(response))
 //         .catch(error => reject(error));
 //     });
 // }
+
+function deletar(){
+    return new Promise((resolve, reject) => {
+        return api.delete(`/usuario/grupo/`)
+        .then(response => resolve(response))
+        .catch(error => reject(error));
+    });
+}
 
 
 export default {
 
     obterPorId,
     cadastrar,
-    // deletar
+    deletar
 }

@@ -1,31 +1,51 @@
 
 <template>
-    
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <h2 class="titulo"> Vincular Grupos </h2>
                 <hr>
-                <!-- <Button @click="obterUsuarioPorGrupo(2)">teste</Button> -->
-
+                <br>
             </div>
             <div>
                 <label>Selecione um grupo: </label>
-    
                 <select class="combo" v-model="grupoSelecionado" @change="handleGrupoSelecionadoChange">
-                                                       
-                     <option value="" disabled>Selecione o grupo</option>
-                     <option v-for="item in gruposDisponiveis" :key="item.id" :value="item.id">{{ item.nome }}</option>
-                                    </select>
+                                                            <option value="" disabled>Selecione o grupo</option>
+                                                            <option v-for="item in gruposDisponiveis" :key="item.id" :value="item.id">(ID: {{item.id}} Nome: {{ item.nome }})</option></select>
+            </div>
+            <hr>
+            <br>
+            <div>
     
-                
-                    <label>Usuários no grupo:</label>
-                    <h1 v-for="user in filteredUsers" :key="user.id">{{ user.name }}</h1>
-                  
+                <label>Usuários no grupo: </label>
+                <ul>
+                    <li v-for="user in grupoUsuario" :key="user.id">
+                        <label>
+                                <input type="checkbox" :value="user.id" v-model="selectedUsers" @change="toggleUserInGroup(user.id)"/> {{ user.name }} 
+                            </label>
+                    </li>
+                </ul>
+            </div>
+            <hr>
+            <br>
+            <div>
+                <label>Usuários disponíveis: </label>
+                <ul>
+                    <li v-for="user in usuariosParaAdicionar" :key="user.id">
+                        <label>
+                        <input type="checkbox" :value="user.id" v-model="selectedUsersToAdd" @change="toggleUserToAdd(user.id)"/>
+                        {{ user.name }}
+                        </label>
+                    </li>
                    
-                
+
+                </ul>
+            </div>
+            <hr>
+            <br>
+            <div>
     
-    
+                <button @click="adicionarUsuarios">Adicionar Usuários</button>
     
             </div>
     
@@ -40,27 +60,68 @@ import Pessoa from '@/models/Pessoa'
 import pessoaService from '@/services/pessoa-service'
 import Usuario from '@/models/Usuario'
 import usuarioService from '@/services/usuario-service'
-//import GrupoUsuario from '@/models/Grupo_Usuario'
 import grupoUsuarioService from '@/services/grupo_usuario-service'
 
 
 export default {
     name: "VinculoDeGrupo",
-    components: {},
+    components: {
+     
+    },
 
     data() {
         return {
+            
             gruposDisponiveis: [],
-            grupoSelecionado: [],
+            grupoSelecionado: null,
             pessoas: [],
             usuarios: [],
             grupos: [],
             grupoUsuario: [],
+            selectedUsersToAdd: [],
+            selectedUsers: []
 
         }
     },
 
     methods: {
+
+        adicionarUsuarios() {
+            if (!this.grupoSelecionado || this.selectedUsersToAdd.length === 0) {
+                return;
+            }
+
+            grupoUsuarioService
+                .cadastrar(this.selectedUsersToAdd, this.grupoSelecionado)
+               
+                .then(() => {
+                    this.obterUsuarioPorGrupo(this.grupoSelecionado);
+                    this.selectedUsersToAdd = []; 
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+                console.log((this.selectedUsersToAdd, this.grupoSelecionado))
+        },
+
+        toggleUserInGroup(userId) {
+
+            if (this.selectedUsers.includes(userId)) {
+                this.selectedUsers = this.selectedUsers.filter(id => id !== userId);
+                grupoUsuarioService.deletar(this.grupoSelecionado, [userId]);
+            } else {
+                this.selectedUsers.push(userId);
+                grupoUsuarioService.cadastrar(this.selectedUsers, this.grupoSelecionado);
+            }
+        },
+
+        toggleUserToAdd(userId) {
+            if (this.selectedUsersToAdd.includes(userId)) {
+                this.selectedUsersToAdd = this.selectedUsersToAdd.filter(id => id !== userId);
+            } else {
+                this.selectedUsersToAdd.push(userId);
+            }
+        },
 
         getAllUsuarios() {
             usuarioService.obterTodos()
@@ -96,7 +157,7 @@ export default {
         obterUsuarioPorGrupo(id) {
             grupoUsuarioService.obterPorId(id)
                 .then(response => {
-                    console.log('API Response:', response.data);
+                    // console.log('API Response:', response.data);
                     return this.grupoUsuario = response.data;
                 })
                 .catch(error => {
@@ -120,11 +181,6 @@ export default {
             }
         },
 
-
-        teste() {
-            const sampleGroupId = 2; 
-            this.obterUsuarioPorGrupo(sampleGroupId);
-        }
     },
 
 
@@ -132,28 +188,20 @@ export default {
     computed: {
 
         filteredUsers() {
-
-
-
-            // if (!this.grupoSelecionado || !this.usuarios.length || !this.grupoUsuario.length) {
-            // console.log(this.grupoSelecionado)
-            // console.log(this.usuarios)
-
-
-
-            // }
-
             const selectedGroupId = parseInt(this.grupoSelecionado);
             return this.usuarios.filter(user => user.grupo_id === selectedGroupId);
         },
 
-
+        usuariosParaAdicionar() {
+            return this.usuarios.filter(user => !this.grupoUsuario.some(grupoUser => grupoUser.id === user.id));
+        }
     },
 
     mounted() {
         this.getAllGrupos();
         this.getAllPessoas();
         this.getAllUsuarios();
+
     }
 }
 </script>
