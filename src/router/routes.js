@@ -8,12 +8,19 @@ import ControleDePessoas from "@/views/ControleDePessoas"
 import ControleDeSetores from "@/views/ControleDeSetores"
 import ControleDeGrupo from "@/views/ControleDeGrupo"
 import ControleDeFuncionalidade from "@/views/ControleDeFuncionalidade"
+import LoginView from "@/views/LoginView"
 
 const routes = [
 {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
   },
   {
     path: '/pessoa',

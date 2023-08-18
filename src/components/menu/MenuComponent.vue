@@ -28,7 +28,4 @@
     </aside>
 </template>
 
-<style scoped>
-
-</style>
 

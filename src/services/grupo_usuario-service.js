@@ -1,3 +1,4 @@
+import api from './api';
 
 function obterPorId(id){
     return new Promise((resolve, reject) => {
@@ -15,18 +16,18 @@ function cadastrar(usuario,grupo){
     });
 }
 
-function deletar(id){
-    return new Promise((resolve, reject) => {
-        return api.delete(`/usuario/grupo/`)
-        .then(response => resolve(response))
-        .catch(error => reject(error));
-    });
-}
+// function deletar(id){
+//     return new Promise((resolve, reject) => {
+//         return api.delete(`/usuario/grupo/`)
+//         .then(response => resolve(response))
+//         .catch(error => reject(error));
+//     });
+// }
 
 
 export default {
 
     obterPorId,
     cadastrar,
-    deletar
+    // deletar
 }

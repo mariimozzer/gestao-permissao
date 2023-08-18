@@ -1,4 +1,6 @@
-export default class Grupo {
+
+
+export default class GrupoUsuario {
     
     constructor(obj){
         obj = obj || {};
